@@ -1,0 +1,20 @@
+[user]
+name = kekezun
+email = kekexyz254288@gmail.com
+
+[core]
+editor = vim
+
+[alias]
+bprune = ! git branch --merged | grep -vE '\\^\\*|main$|master$|develop$' | xargs -p -I % git branch -d %
+bprune-force = ! git branch --merged | grep -vE '\\^\\*|main$|master$|develop$' | xargs -I % git branch -d %
+bprune-list = ! git branch --merged | grep -vE '\\^\\*|main$|master$|develop$'
+
+[rerere]
+enabled = true
+
+[init]
+defaultBranch = main
+
+[pull]
+ff = only

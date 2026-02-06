@@ -1,0 +1,43 @@
+[general]
+working_directory = "~"
+
+[window]
+opacity = 0.95           # ウィンドウの透明度 (0.0-1.0) - ちょっと透けてるのがオシャレでしょ？
+decorations = "full"     # ウィンドウの装飾表示 ("full", "none", "transparent") - 全部表示が基本よ
+dynamic_title = true     # タイトルバーを動的に変更 - 実行中のプログラム名が表示されるの
+dimensions = { columns = 120, lines = 36 }  # ウィンドウサイズ (列x行) - 大きめがパワフルでいいわよね
+option_as_alt = "Both"  # Optionキーの動作 ("None", "Alt", "Meta", "Both") - AltとMetaの両方に設定
+
+[font]
+normal = { family = "HackGen35 Console NF", style = "Regular" }  # 通常フォント - 日本語対応のプログラミングフォントよ
+bold = { style = "Bold" }     # 太字フォントスタイル
+italic = { style = "Italic" } # 斜体フォントスタイル
+size = 14.0                   # フォントサイズ - 読みやすさ重視の大きさね
+
+[colors.primary]
+background = "#1a1b26"  # 背景色 - 深い青系で目に優しいダークテーマよ
+foreground = "#c0caf5"  # 前景色（通常の文字色） - 薄い青白で美しいコントラスト
+
+[colors.selection]
+background = "#33467C"      # 選択範囲の背景色 - 青系で統一感バッチリ
+text = "CellForeground"     # 選択範囲の文字色 - セルの前景色を使用
+
+[colors.normal]
+black = "#414868"    # 黒（実際はグレー）- 完全な黒じゃつまらないでしょ？
+red = "#f7768e"      # 赤 - エラーメッセージもオシャレに
+green = "#9ece6a"    # 緑 - 成功メッセージが映える色よ
+yellow = "#e0af68"   # 黄 - 警告もこの色なら気分が上がるわね
+blue = "#7aa2f7"     # 青 - 情報表示にピッタリの爽やかブルー
+magenta = "#bb9af7"  # マゼンタ - キーワードが美しく光るのよ
+cyan = "#7dcfff"     # シアン - 文字列がエレガントに表示されるわ
+white = "#c0caf5"    # 白（実際は薄い青白） - 基本文字色と同じで統一感よ
+
+[cursor]
+style = { shape = "Beam", blinking = "Always" }  # カーソル形状（"Block", "Underline", "Beam"）と点滅設定
+blink_interval = 300  # 点滅間隔（ミリ秒） - この速さが一番目を引くのよ
+thickness = 0.2       # カーソルの太さ（0.0-1.0） - 細めがスタイリッシュでしょ？
+
+[bell]
+animation = "Linear"  # ベルアニメーション（"Ease", "EaseOut", "EaseOutSine", "EaseOutQuad", "EaseOutCubic", "EaseOutQuart", "EaseOutQuint", "EaseOutExpo", "EaseOutCirc", "Linear"）
+duration = 50        # アニメーション時間（ミリ秒） - 短めでサクッと
+color = "#ff00ff"     # ベル色 - 派手なマゼンタで絶対に見逃さないわよ！

@@ -1,0 +1,21 @@
+# zshrc設定参考URL ---------------------------------------------------------------
+
+# [.zshrcの設定例（設定内容の説明コメント付き）](https://qiita.com/d-dai/items/d7f329b7d82e2165dab3)
+# [少し凝ったzshrc](https://gist.github.com/mollifier/4979906)
+# [zshrcを分割する時のベターなファイル名を知りたい。](https://qiita.com/clomsync/items/091e1423bc96e5259b3a)
+
+# zsh設定ファイル読み込み --------------------------------------------------------
+
+# zmodload zsh/zprof && zprof
+
+ZSH_DIR=${HOME}/.zsh
+
+for i in ${ZSH_DIR}/*.zsh; do
+  source ${i}
+done
+
+if (which zprof >/dev/null 2>&1); then
+  zprof
+fi
+
+autoload -U +X bashcompinit && bashcompinit

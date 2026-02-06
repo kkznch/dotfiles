@@ -1,0 +1,85 @@
+{
+  // === Editor ===
+  "editor.dragAndDrop": false,
+  "editor.wrappingIndent": "indent",
+  "editor.inlineSuggest.enabled": true,
+  // === Files ===
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  // === Explorer ===
+  "explorer.compactFolders": false,
+  // === Git ===
+  "git.enableSmartCommit": true,
+  // === Diff Editor ===
+  "diffEditor.ignoreTrimWhitespace": false,
+  // === Workbench ===
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "comments.thread.confirmOnCollapse": "never",
+  // === TypeScript ===
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  // === GitHub Copilot ===
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "yaml": false,
+    "typescript": true
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.localeOverride": "ja",
+  // === Claude Code ===
+  "claudeCode.preferredLocation": "panel",
+  // === GitLens ===
+  "gitlens.views.repositories.files.layout": "list",
+  "gitlens.plusFeatures.enabled": false,
+  // === Go ===
+  "go.toolsManagement.autoUpdate": true,
+  // === Ruby ===
+  "rubyLsp.rubyExecutablePath": "/Users/kekezun/.local/share/mise/shims/ruby",
+  // === Docker ===
+  "docker.extension.enableComposeLanguageServer": false,
+  // === Color Highlight ===
+  "color-highlight.markerType": "underline",
+  // === Language Specific Settings ===
+  "[json][jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnType": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "claudeCode.useCtrlEnterToSend": true
+}

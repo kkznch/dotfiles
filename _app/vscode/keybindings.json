@@ -1,0 +1,109 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "cmd+k cmd+f",
+    "command": "editor.action.formatSelection",
+    "when": "editorHasDocumentSelectionFormattingProvider && editorHasDocumentSelectionFormattingProvider && editorTextFocus && !editorReadonly"
+  },
+  // EmacsのTabと同じ動作をさせる設定
+  // {
+  //   "key": "tab",
+  //   "command": "emacs-tab.reindentCurrentLine",
+  //   "when": "editorTextFocus"
+  // },
+  // {
+  //   "key": "ctrl+i",
+  //   "command": "emacs-tab.reindentCurrentLine",
+  //   "when": "editorTextFocus"
+  // },
+  {
+    "key": "ctrl+i",
+    "command": "editor.action.reindentselectedlines",
+    "when": "editorTextFocus"
+  },
+  // Awsome Emacs Keymapの書き換え
+  // 検索欄表示時に検索欄内で移動できなかったのでできるようにしておく
+  // {
+  //   "key": "enter",
+  //   "command": "editor.action.nextMatchFindAction",
+  //   "when": "editorFocus && findWidgetVisible && findInputFocussed"
+  // },
+  {
+    "key": "ctrl+a",
+    "command": "",
+    "when": "editorFocus && findWidgetVisible && findInputFocussed",
+  },
+  {
+    "key": "ctrl+b",
+    "command": "",
+    "when": "editorFocus && findWidgetVisible && findInputFocussed",
+  },
+  {
+    "key": "ctrl+e",
+    "command": "",
+    "when": "editorFocus && findWidgetVisible && findInputFocussed",
+  },
+  {
+    "key": "ctrl+f",
+    "command": "",
+    "when": "editorFocus && findWidgetVisible && findInputFocussed",
+  },
+  {
+    "key": "ctrl+k",
+    "command": "",
+    "when": "editorFocus && findWidgetVisible && findInputFocussed",
+  },
+  {
+    "key": "ctrl+n",
+    "command": "",
+    "when": "editorFocus && findWidgetVisible && findInputFocussed",
+  },
+  {
+    "key": "ctrl+p",
+    "command": "",
+    "when": "editorFocus && findWidgetVisible && findInputFocussed",
+  },
+  {
+    "key": "ctrl+y",
+    "command": "",
+    "when": "editorFocus && findWidgetVisible && findInputFocussed",
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-emacs-mcx.setMarkCommand",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+;",
+    "command": "-editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+space",
+    "command": "editor.action.triggerSuggest",
+    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-editor.action.triggerSuggest",
+    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "-github.copilot.acceptCursorPanelSolution",
+    "when": "github.copilot.activated && github.copilot.panelVisible"
+  },
+  {
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "\\\r\n"
+    },
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+-",
+    "command": "-undo",
+    "when": "editorTextFocus && !editorReadonly"
+  }
+]
