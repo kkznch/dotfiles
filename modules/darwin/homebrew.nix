@@ -35,6 +35,7 @@
     casks = [
       "1password"
       "alacritty"
+      "claude-code"
       "alfred"
       "firefox"
       "font-hackgen-nerd"
