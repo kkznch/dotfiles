@@ -18,7 +18,7 @@ cd ~/ghq/github.com/kkznch/dotfiles
 ### 設定変更時
 
 ```bash
-darwin-rebuild switch --flake .
+./bootstrap.sh
 ```
 
 ## 構成
@@ -32,21 +32,27 @@ darwin-rebuild switch --flake .
 ├── modules/
 │   ├── darwin/            # macOSシステム設定
 │   │   ├── default.nix
-│   │   ├── homebrew.nix   # Homebrewパッケージ
+│   │   ├── homebrew.nix   # Homebrewパッケージ (GUI アプリ, git-wt)
 │   │   └── system.nix     # Dock, Finder等
 │   │
 │   └── home/              # ユーザー設定
 │       ├── default.nix
 │       ├── links.nix      # シンボリックリンク
-│       └── packages.nix   # ユーザーパッケージ
+│       └── packages.nix   # CLIパッケージ (Nix管理)
 │
-├── _zsh/                  # zsh設定
-├── _zshrc
-├── _config/               # アプリ設定
-│   ├── git/
-│   ├── alacritty/
-│   ├── nvim/
-│   └── ...
+├── files/                 # リンク・参照されるファイル群
+│   ├── config/            # → ~/.config/*
+│   │   ├── alacritty/
+│   │   ├── emacs/
+│   │   ├── git/
+│   │   ├── karabiner/
+│   │   ├── sheldon/
+│   │   ├── vscode/
+│   │   ├── zellij/
+│   │   └── zsh/
+│   ├── zshrc              # → ~/.zshrc
+│   ├── editorconfig       # → ~/.editorconfig
+│   └── Brewfile.vscode    # VSCode拡張リスト
 │
 └── docs/
     └── nix-guide.md       # Nix解説
@@ -56,9 +62,9 @@ darwin-rebuild switch --flake .
 
 ```bash
 # 設定適用
-darwin-rebuild switch --flake .
+./bootstrap.sh
 
-# 依存関係更新
+# パッケージ更新 (flake.lock の nixpkgs を最新に)
 nix flake update
 
 # ゴミ掃除
@@ -67,17 +73,19 @@ nix-collect-garbage -d
 
 ## パッケージ追加
 
-### CLI ツール
+### CLI ツール (Nix)
 
-`modules/darwin/homebrew.nix` の `brews` に追加：
+`modules/home/packages.nix` に追加：
 
 ```nix
-brews = [
-  "新しいツール"
+home.packages = with pkgs; [
+  新しいツール
 ];
 ```
 
-### GUI アプリ
+パッケージ検索: `nix search nixpkgs <名前>`
+
+### GUI アプリ (Homebrew)
 
 `modules/darwin/homebrew.nix` の `casks` に追加：
 
@@ -93,7 +101,7 @@ casks = [
 
 ```nix
 xdg.configFile = {
-  "新しい設定".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/_config/新しい設定";
+  "新しい設定".source = mkOutOfStoreSymlink "${filesDir}/config/新しい設定";
 };
 ```
 
