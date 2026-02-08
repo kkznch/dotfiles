@@ -9,7 +9,6 @@ in
 {
   # Home directory files
   home.file = {
-    ".zsh".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/_zsh";
     ".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/_zshrc";
     ".editorconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/_editorconfig";
 
@@ -34,6 +33,8 @@ in
     "karabiner".source = mkOutOfStoreSymlink "${dotfilesDir}/_config/karabiner";
     "sheldon".source = mkOutOfStoreSymlink "${dotfilesDir}/_config/sheldon";
     "alacritty".source = mkOutOfStoreSymlink "${dotfilesDir}/_config/alacritty";
+    "emacs".source = mkOutOfStoreSymlink "${dotfilesDir}/_config/emacs";
+    "zsh".source = mkOutOfStoreSymlink "${dotfilesDir}/_config/zsh";
     "zellij".source = mkOutOfStoreSymlink "${dotfilesDir}/_config/zellij";
   } // (if privateExists then {
     "alfred".source = mkOutOfStoreSymlink "${privateDir}/alfred";

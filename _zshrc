@@ -8,7 +8,7 @@
 
 # zmodload zsh/zprof && zprof
 
-ZSH_DIR=${HOME}/.zsh
+ZSH_DIR=${XDG_CONFIG_HOME:-${HOME}/.config}/zsh
 
 for i in ${ZSH_DIR}/*.zsh; do
   source ${i}
