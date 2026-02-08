@@ -2,7 +2,8 @@
 
 ;; load-pathに追加
 (setq elisp-path (expand-file-name "elisp" user-emacs-directory))
-(add-to-list `load-path elisp-path)
+(when (file-directory-p elisp-path)
+  (add-to-list 'load-path elisp-path))
 
 ;; 文字コード
 (setenv "LANG" "ja_JP.UTF-8")
@@ -11,7 +12,7 @@
 
 ;; バックアップファイルの設定
 ;;(setq backup-inhibited t) ;; バックアップファイルを作成しない
-(setq backup-directory-alist '((".*" . "~/.emacs.d/backup"))) ;; 保存先変更
+(setq backup-directory-alist `((".*" . ,(expand-file-name "backup" user-emacs-directory)))) ;; 保存先変更
 (setq version-control     t) ;; 実行の有無
 (setq kept-new-versions   5) ;; 最新の保持数
 (setq kept-old-versions   1) ;; 最古の保持数
@@ -19,7 +20,7 @@
 
 ;; 自動保存の設定
 ;;(setq auto-save-default nil) ;; 自動保存しない
-(setq auto-save-file-name-transforms   '((".*" "~/.emacs.d/tmp/" t))) ;; 保存先変更
+(setq auto-save-file-name-transforms   `((".*" ,(expand-file-name "tmp/" user-emacs-directory) t))) ;; 保存先変更
 (setq delete-auto-save-files t) ;;  終了時に自動保存ファイルを削除
 
 ;; シンボリックリンクの読み込みを許可
@@ -93,9 +94,7 @@
 
 ;; パッケージ追加
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(fset 'package-desc-vers 'package--ac-desc-version)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 ;; package.elでインストールしたパッケージを管理するcustom.elを読み込み
@@ -104,31 +103,30 @@
   (load custom-file))
 
 ;; replace-colorthemes -----------------------------------------
-;; custom-theme-load-pathに追加
-(add-to-list `custom-theme-load-path
-             (file-name-as-directory (expand-file-name "replace-colorthemes" elisp-path)))
-
-;; テーマ設定
-(load-theme 'ld-dark t t)
-(enable-theme `ld-dark)
+(let ((theme-dir (expand-file-name "replace-colorthemes" elisp-path)))
+  (when (file-directory-p theme-dir)
+    (add-to-list 'custom-theme-load-path (file-name-as-directory theme-dir))
+    (load-theme 'ld-dark t t)
+    (enable-theme 'ld-dark)))
 
 ;; uniquify ----------------------------------------------------
 ;; 同名ファイルを開いたときに、１階層上のディレクトリ名を表示する
-(require 'uniquify)
+(require 'uniquify nil t)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; auto-complete -----------------------------------------------
 ;; 入力を補完する
-(require 'auto-complete)
-(require 'auto-complete-config)
-(global-auto-complete-mode t)
-(ac-config-default)
-(setq ac-use-menu-map t)
-(global-set-key (kbd "C-j") 'auto-complete)
+(when (require 'auto-complete nil t)
+  (require 'auto-complete-config nil t)
+  (global-auto-complete-mode t)
+  (ac-config-default)
+  (setq ac-use-menu-map t)
+  (global-set-key (kbd "C-j") 'auto-complete))
 
 ;; editorconfig ------------------------------------------------
 ;; editorconfigを使用する
-(editorconfig-mode 1)
+(when (require 'editorconfig nil t)
+  (editorconfig-mode 1))
 
 ;; python ------------------------------------------------------
 ;; python-modeがロードされた際の処理（python-modeではなくpythonでよい）
@@ -165,26 +163,24 @@
     (global-set-key (kbd "C-[") 'ac-php-location-stack-back))
 
 ;; web ---------------------------------------------------------
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-;;(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-(with-eval-after-load "web-mode"
-    (setq web-mode-enable-auto-closing t)
-    (setq web-mode-enable-auto-pairing t)
-    (setq web-mode-auto-close-style 1)
-    (setq web-mode-tag-auto-close-style t))
+(when (require 'web-mode nil t)
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-enable-auto-closing t)
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-auto-close-style 1)
+  (setq web-mode-tag-auto-close-style t))
 
 ;; flycheck ----------------------------------------------------
-(require 'flycheck)
-(flycheck-add-mode 'javascript-eslint 'javascript-mode)
-(flycheck-add-mode 'javascript-eslint 'typescript-mode)
+(when (require 'flycheck nil t)
+  (flycheck-add-mode 'javascript-eslint 'javascript-mode)
+  (flycheck-add-mode 'javascript-eslint 'typescript-mode))
 
 ;; typescript --------------------------------------------------
 (with-eval-after-load "javascript-mode"

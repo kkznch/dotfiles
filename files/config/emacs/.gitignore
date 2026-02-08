@@ -4,3 +4,4 @@ backup/*
 tmp/*
 auto-save-list/*
 ac-comphist.dat
+eln-cache/*

@@ -5,7 +5,7 @@
     docker
     docker-buildx
     docker-compose
-    emacs
+    emacs-nox
     gh
     ghq
     gibo
