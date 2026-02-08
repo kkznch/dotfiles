@@ -17,9 +17,9 @@ in
 
     # VS Code settings
     "Library/Application Support/Code/User/settings.json".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/_app/vscode/settings.json";
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/_config/vscode/settings.json";
     "Library/Application Support/Code/User/keybindings.json".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/_app/vscode/keybindings.json";
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/_config/vscode/keybindings.json";
   } // (if privateExists then {
     # Claude Code settings (~/.claude/*)
     ".claude/settings.json".source = mkOutOfStoreSymlink "${privateDir}/claude/settings.json";
