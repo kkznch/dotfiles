@@ -14,8 +14,9 @@
     # Finder
     finder = {
       AppleShowAllExtensions = true;
-      ShowPathbar = true;
       FXEnableExtensionChangeWarning = false;
+      NewWindowTarget = "PfHm";
+      ShowPathbar = true;
     };
 
     # Trackpad
@@ -64,6 +65,9 @@
     CustomUserPreferences = {
       "com.apple.loginwindow" = {
         TALLogoutSavesState = false;
+      };
+      "com.apple.finder" = {
+        ShowRecentTags = false;
       };
     };
   };
