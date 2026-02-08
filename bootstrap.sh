@@ -48,7 +48,7 @@ fi
 # 6. Install VS Code extensions (if VS Code is installed)
 if command -v code &> /dev/null; then
     echo "Installing VS Code extensions..."
-    brew bundle --file="$DOTFILES_DIR/Brewfile.vscode"
+    brew bundle --file="$DOTFILES_DIR/files/Brewfile.vscode"
 fi
 
 echo "=== Done! ==="
