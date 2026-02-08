@@ -14,22 +14,7 @@
     ];
 
     brews = [
-      "mise"
-      "emacs"
-      "docker"
-      "docker-buildx"
-      "docker-compose"
       "k1LoW/tap/git-wt"
-      "gh"
-      "ghq"
-      "gibo"
-      "go"
-      "jq"
-      "mas"
-      "pstree"
-      "sheldon"
-      "sk"
-      "zellij"
     ];
 
     casks = [

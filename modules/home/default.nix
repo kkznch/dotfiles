@@ -10,6 +10,7 @@
     username = username;
     homeDirectory = "/Users/${username}";
     stateVersion = "24.05";
+
   };
 
   # Let home-manager manage itself
