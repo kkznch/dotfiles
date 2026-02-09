@@ -15,27 +15,32 @@ if ! command -v nix &> /dev/null; then
     exit 0
 fi
 
-# 2. Enable flakes (create config if needed)
+# 2. Install Homebrew if not present
+if ! command -v brew &> /dev/null; then
+    echo "Homebrew is not installed. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# 3. Enable flakes (create config if needed)
 mkdir -p ~/.config/nix
 if [ ! -f ~/.config/nix/nix.conf ]; then
     echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
 fi
 
-# 3. Backup existing shell configs if needed
-if [ -f /etc/bashrc ] && [ ! -f /etc/bashrc.before-nix-darwin ]; then
-    echo "Backing up /etc/bashrc..."
-    sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin
-fi
-if [ -f /etc/zshrc ] && [ ! -f /etc/zshrc.before-nix-darwin ]; then
-    echo "Backing up /etc/zshrc..."
-    sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin
-fi
+# 4. Backup /etc shell configs that conflict with nix-darwin
+for f in /etc/bashrc /etc/zshrc; do
+    if [ -f "$f" ]; then
+        echo "Backing up $f..."
+        sudo mv -f "$f" "$f.before-nix-darwin"
+    fi
+done
 
-# 4. Get hostname
+# 5. Get hostname
 HOSTNAME=$(hostname -s)
 echo "Host: $HOSTNAME"
 
-# 5. Run nix-darwin
+# 6. Run nix-darwin
 echo "Running darwin-rebuild switch..."
 if command -v darwin-rebuild &> /dev/null; then
     # Already have nix-darwin installed (requires sudo for system activation)
@@ -45,7 +50,7 @@ else
     sudo nix run nix-darwin -- switch --flake "$DOTFILES_DIR#$HOSTNAME"
 fi
 
-# 6. Install VS Code extensions (if VS Code is installed)
+# 7. Install VS Code extensions (if VS Code is installed)
 if command -v code &> /dev/null; then
     echo "Installing VS Code extensions..."
     brew bundle --file="$DOTFILES_DIR/files/Brewfile.vscode"
