@@ -24,6 +24,8 @@ in
     # Claude Code settings (~/.claude/*)
     ".claude/settings.json".source = mkOutOfStoreSymlink "${privateDir}/claude/settings.json";
     ".claude/CLAUDE.md".source = mkOutOfStoreSymlink "${privateDir}/claude/CLAUDE.md";
+    ".claude/USER.md".source = mkOutOfStoreSymlink "${privateDir}/claude/USER.md";
+    ".claude/plugins/learning-notes".source = mkOutOfStoreSymlink "${privateDir}/claude/plugins/learning-notes";
   } else {});
 
   # XDG config files (~/.config/*)
