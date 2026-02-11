@@ -15,7 +15,7 @@
     finder = {
       AppleShowAllExtensions = true;
       FXEnableExtensionChangeWarning = false;
-      NewWindowTarget = "PfHm";
+      NewWindowTarget = "Home";
       ShowPathbar = true;
     };
 
